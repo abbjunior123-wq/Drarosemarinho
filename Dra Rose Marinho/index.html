@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dra. Rose Marinho — Neurologista em Fortaleza</title>
+  <meta name="description" content="Neurologista em Fortaleza especialista em Parkinson, Tremores, Demências e Toxina Botulínica. Mais de 35 anos de experiência.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:      #0B1926;
+      --ink-2:    #142030;
+      --ink-3:    #1C3045;
+      --teal:     #2EC4B6;
+      --teal-d:   #1EA898;
+      --teal-l:   #82DDD7;
+      --cream:    #E8F5F3;
+      --cream-d:  #D5EEE9;
+      --warm:     #F0FAF8;
+      --inv:      rgba(255,255,255,.80);
+      --inv-m:    rgba(255,255,255,.50);
+      --inv-d:    rgba(255,255,255,.28);
+      --green:    #22C55E;
+      --blue:     #1E3A8A;
+      --blue-m:   #2563EB;
+      --blue-l:   #93C5FD;
+      --purple:   #8B72BE;
+      --purple-l: #B4A0DC;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: #FAFFFE; color: #1A3640; overflow-x: hidden; }
+    h1, h2, h3, h4 { font-family: 'DM Serif Display', serif; font-weight: 400; line-height: 1.1; }
+
+    /* ── GRAPHITE BLUE TEXTURE ──────────────── */
+    /* veio estático, sem animação — efeito grafite reluzente */
+
+    /* ── REVEAL ─────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+
+    /* ── NAV ────────────────────────────────── */
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo-img {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      object-fit: contain;
+      background: rgba(255,255,255,.96);
+      padding: 3px;
+      flex-shrink: 0;
+    }
+    .nav-logo-text { display: flex; flex-direction: column; }
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 68px; padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(11,25,38,.94);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-top: 2px solid var(--teal);
+      border-bottom: 1px solid rgba(46,196,182,.12);
+      transition: background .3s, box-shadow .3s;
+    }
+    .nav.scrolled { background: rgba(11,25,38,.98); box-shadow: 0 2px 40px rgba(0,0,0,.6); }
+    .nav-logo strong {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px; color: #fff; font-weight: 400; letter-spacing: .3px;
+    }
+    .nav-logo span {
+      display: block; font-size: 10px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--teal); margin-top: 2px;
+    }
+    .nav-right { display: flex; align-items: center; gap: 36px; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 12px; font-weight: 400; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--inv-m);
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-btn {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--green); color: #fff;
+      padding: 10px 22px; border-radius: 3px;
+      font-size: 13px; font-weight: 500;
+      text-decoration: none; transition: background .2s; white-space: nowrap;
+    }
+    .nav-btn:hover { background: #16a34a; }
+
+    /* ── HERO ───────────────────────────────── */
+    .hero {
+      min-height: 100vh; padding-top: 68px;
+      position: relative; overflow: hidden;
+      display: flex; align-items: center;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: 58% 50%;
+      display: block;
+      transform: scale(1.04); transition: transform 9s ease;
+    }
+    .hero-bg img.loaded { transform: scale(1); }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(108deg, rgba(11,25,38,.98) 0%, rgba(11,25,38,.93) 34%, rgba(11,25,38,.52) 58%, rgba(11,25,38,.06) 100%),
+        linear-gradient(to top, rgba(11,25,38,.78) 0%, transparent 30%);
+    }
+    .hero-left {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 88px 72px 88px 80px;
+      max-width: 680px;
+    }
+    .eyebrow {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 28px;
+    }
+    .eyebrow-line {
+      width: 36px; height: 1px; flex-shrink: 0;
+      background: linear-gradient(90deg, var(--teal), var(--blue-l));
+    }
+    .eyebrow span {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--teal); font-weight: 400;
+    }
+    .hero h1 {
+      font-size: clamp(42px, 4.8vw, 68px); color: #fff;
+      margin-bottom: 24px;
+    }
+    .hero h1 em { font-style: italic; color: var(--teal-l); }
+    .hero-sub {
+      font-size: 15px; font-weight: 300; color: var(--inv);
+      line-height: 1.82; max-width: 420px; margin-bottom: 44px;
+    }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-wa {
+      display: flex; align-items: center; gap: 9px;
+      background: var(--green); color: #fff;
+      padding: 15px 28px; border-radius: 3px;
+      font-size: 14px; font-weight: 500;
+      text-decoration: none; transition: all .2s;
+    }
+    .btn-wa:hover { background: #16a34a; transform: translateY(-1px); }
+    .btn-ghost {
+      display: flex; align-items: center; gap: 9px;
+      border: 1px solid rgba(255,255,255,.22); color: var(--inv-m);
+      padding: 15px 28px; border-radius: 3px;
+      font-size: 14px; font-weight: 400;
+      text-decoration: none; transition: all .2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,.55); color: #fff; }
+    .hero-meta {
+      margin-top: 48px; padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,.07);
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--inv-d);
+    }
+
+    /* ── DATA STRIP ─────────────────────────── */
+    .data-strip {
+      background: var(--teal);
+    }
+    .data-strip-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .data-item {
+      padding: 28px 40px;
+      border-right: 1px solid rgba(255,255,255,.18);
+      display: flex; flex-direction: column; gap: 5px;
+    }
+    .data-item:last-child { border-right: none; }
+    .data-n {
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px; color: #fff; line-height: 1;
+      text-shadow: none;
+    }
+    .data-l {
+      font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+      color: rgba(255,255,255,.72); font-weight: 300; line-height: 1.4;
+    }
+
+    /* ── SEC BASE ───────────────────────────── */
+    .sec { padding: 96px 48px; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .sec-hdr { margin-bottom: 64px; }
+    .sec-title { font-size: clamp(32px, 3.5vw, 50px); }
+    .sec-desc { font-size: 15px; font-weight: 300; line-height: 1.82; max-width: 520px; margin-top: 14px; }
+
+    /* ── ESPECIALIDADES ─────────────────────── */
+    .sec-espec { background: #F0FAF8; }
+    .sec-espec .eyebrow span { color: var(--teal); }
+    .sec-espec .sec-title { color: #1A3640; }
+    .sec-espec .sec-desc { color: #4A6B75; }
+
+    .espec-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border: 1px solid rgba(46,196,182,.15);
+    }
+    .espec-card {
+      padding: 34px 26px;
+      border-right: 1px solid rgba(46,196,182,.12);
+      border-bottom: 1px solid rgba(46,196,182,.12);
+      cursor: default;
+      position: relative; overflow: hidden;
+      transition: background .3s;
+    }
+    .espec-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: var(--teal);
+      transform: scaleX(0); transform-origin: left; transition: transform .35s ease;
+    }
+    .espec-card:hover { background: rgba(46,196,182,.05); }
+    .espec-card:hover::after { transform: scaleX(1); }
+    .espec-n {
+      font-family: 'DM Serif Display', serif;
+      font-size: 11px; letter-spacing: 3px; color: var(--teal);
+      margin-bottom: 18px; display: block;
+    }
+    .espec-ico { margin-bottom: 16px; color: var(--teal); opacity: .7; }
+    .espec-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px; color: #1A3640; margin-bottom: 10px;
+    }
+    .espec-card p { font-size: 13px; font-weight: 300; color: #4A6B75; line-height: 1.7; }
+
+    /* ── SOBRE ──────────────────────────────── */
+    .sec-sobre { background: #FFFFFF; padding: 96px 48px; }
+    .sobre-wrap {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 5fr 7fr;
+      gap: 72px; align-items: center;
+    }
+    .sobre-photo-col { position: relative; }
+    .sobre-photo-card {
+      aspect-ratio: 3/4; border-radius: 2px;
+      overflow: hidden; position: relative;
+    }
+    .sobre-photo {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: 50% 18%;
+      display: block;
+    }
+    .sobre-photo-col::after {
+      content: '';
+      position: absolute;
+      top: 20px; left: 20px; right: -20px; bottom: -20px;
+      border: 1px solid rgba(46,196,182,.22);
+      border-radius: 2px; z-index: -1;
+    }
+    .sobre-content {
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .sobre-content .eyebrow span { color: var(--teal); }
+    .sobre-content .sec-title { color: #1A3640; margin-bottom: 28px; }
+    .sobre-content p {
+      font-size: 15px; font-weight: 300; color: #4A6B75;
+      line-height: 1.85; margin-bottom: 18px;
+    }
+    .sobre-content p strong { color: #1A3640; font-weight: 500; }
+    .creds { display: flex; flex-direction: column; gap: 0; margin-top: 28px; margin-bottom: 40px; }
+    .cred {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(46,196,182,.12);
+      font-size: 13px; font-weight: 300; color: #4A6B75; line-height: 1.5;
+      transition: color .2s;
+    }
+    .cred:first-child { border-top: 1px solid rgba(46,196,182,.12); }
+    .cred:hover { color: #1A3640; }
+    .cred-bar { width: 2px; min-height: 20px; background: var(--teal); flex-shrink: 0; margin-top: 1px; }
+
+    /* ── TOXINA ─────────────────────────────── */
+    .sec-toxina { background: #F4FBFA; }
+    .sec-toxina .eyebrow span { color: var(--teal); }
+    .sec-toxina .sec-title { color: #1A3640; }
+    .sec-toxina .sec-desc { color: #4A6B75; }
+
+    .toxina-body {
+      display: grid; grid-template-columns: 5fr 7fr;
+      gap: 72px; align-items: start; margin-top: 56px;
+    }
+    .toxina-left { display: flex; flex-direction: column; gap: 20px; }
+    .toxina-left p {
+      font-size: 15px; font-weight: 300; color: #4A6B75;
+      line-height: 1.85;
+    }
+    .toxina-left p strong { color: #1A3640; font-weight: 500; }
+    .tox-info-card {
+      border: 1px solid rgba(46,196,182,.25);
+      background: rgba(46,196,182,.06);
+      border-radius: 2px; padding: 24px 26px;
+    }
+    .tox-info-card .lbl {
+      font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 10px; font-weight: 400;
+    }
+    .tox-info-card p {
+      font-size: 13px; font-weight: 300; color: #4A6B75;
+      line-height: 1.7; margin: 0;
+    }
+
+    .toxina-right { display: flex; flex-direction: column; }
+    .tox-list-hdr {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 24px; font-weight: 400;
+    }
+    .tox-ind {
+      display: grid; grid-template-columns: 40px 1fr;
+      align-items: start; gap: 0;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(46,196,182,.12);
+      transition: background .15s;
+    }
+    .tox-ind:first-of-type { border-top: 1px solid rgba(46,196,182,.12); }
+    .tox-ind:hover { padding-left: 6px; }
+    .tox-n {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px; color: var(--teal); line-height: 1; padding-top: 2px;
+    }
+    .tox-name { font-size: 14px; font-weight: 500; color: #1A3640; margin-bottom: 3px; }
+    .tox-sub { font-size: 12px; font-weight: 300; color: #7A9AA5; line-height: 1.4; }
+    .tox-cta { margin-top: 28px; text-align: center; }
+    .tox-cta .btn-wa { display: inline-flex; }
+
+    /* ── TRAJETÓRIA ─────────────────────────── */
+    .sec-traj { background: #FFFFFF; }
+    .sec-traj .eyebrow span { color: var(--teal); }
+    .sec-traj .sec-title { color: #1A3640; }
+    .sec-traj .sec-desc { color: #4A6B75; }
+    .traj-cols {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0 64px;
+    }
+    .traj-item {
+      display: grid; grid-template-columns: 104px 1fr;
+      gap: 0; padding: 22px 0;
+      border-bottom: 1px solid rgba(46,196,182,.12);
+    }
+    .traj-item:first-child { border-top: 1px solid rgba(46,196,182,.12); }
+    .traj-yr {
+      font-size: 11px; font-weight: 400;
+      color: var(--teal); line-height: 1.4;
+      padding-top: 5px; padding-right: 20px;
+      text-align: right;
+      border-right: 1px solid rgba(46,196,182,.25);
+      flex-shrink: 0;
+    }
+    .traj-body {
+      padding-left: 20px;
+    }
+    .traj-body h4 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px; color: #1A3640; margin-bottom: 4px; line-height: 1.2;
+    }
+    .traj-body p { font-size: 13px; font-weight: 300; color: #4A6B75; line-height: 1.6; }
+
+    /* ── GALERIA ────────────────────────────── */
+    .sec-gal { background: #F0FAF8; padding: 0; }
+    .gal-hdr { padding: 80px 48px 52px; max-width: 1200px; margin: 0 auto; }
+    .sec-gal .eyebrow span { color: var(--teal); }
+    .sec-gal .sec-title { color: #1A3640; }
+    .sec-gal .sec-desc { color: #4A6B75; }
+
+    .gal-mosaic {
+      display: grid;
+      grid-template-columns: 3fr 2fr 2fr 2fr;
+      grid-template-rows: 300px 260px 290px;
+      gap: 4px;
+    }
+    .gal-mosaic .gal-item:nth-child(1) { grid-column: 1; grid-row: 1 / 3; }
+    .gal-mosaic .gal-item:nth-child(2) { grid-column: 2; grid-row: 1; }
+    .gal-mosaic .gal-item:nth-child(3) { grid-column: 3 / 5; grid-row: 1; }
+    .gal-mosaic .gal-item:nth-child(4) { grid-column: 2 / 4; grid-row: 2; }
+    .gal-mosaic .gal-item:nth-child(5) { grid-column: 4; grid-row: 2; }
+    .gal-mosaic .gal-item:nth-child(6) { grid-column: 1 / 3; grid-row: 3; }
+    .gal-mosaic .gal-item:nth-child(7) { grid-column: 3; grid-row: 3; }
+    .gal-mosaic .gal-item:nth-child(8) { grid-column: 4; grid-row: 3; }
+
+    .gal-item {
+      position: relative; overflow: hidden; cursor: pointer;
+    }
+    .gal-item img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform .55s ease; filter: brightness(.82) saturate(.9);
+    }
+    .gal-item:hover img { transform: scale(1.05); filter: brightness(1) saturate(1); }
+    .gal-cap {
+      position: absolute; inset: 0;
+      background: rgba(11,25,38,.75);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 24px 20px;
+      opacity: 0; transition: opacity .35s;
+    }
+    .gal-item:hover .gal-cap { opacity: 1; }
+    .gal-cap-label {
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--teal-l); margin-bottom: 5px;
+    }
+    .gal-cap p { font-size: 13px; color: rgba(255,255,255,.9); line-height: 1.45; }
+    .gal-zoom {
+      position: absolute; top: 16px; right: 16px;
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,.12); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity .35s; color: #fff;
+    }
+    .gal-item:hover .gal-zoom { opacity: 1; }
+
+    /* ── LIGHTBOX ───────────────────────────── */
+    .lb {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(5,12,20,.97);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity .3s;
+    }
+    .lb.open { opacity: 1; pointer-events: all; }
+    .lb-img {
+      max-width: 88vw; max-height: 88vh;
+      object-fit: contain; display: block;
+      border: 1px solid rgba(46,196,182,.25);
+    }
+    .lb-close {
+      position: absolute; top: 24px; right: 32px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--inv-m); cursor: pointer; user-select: none;
+      transition: color .2s;
+    }
+    .lb-close:hover { color: #fff; }
+    .lb-cap {
+      position: absolute; bottom: 32px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px; color: var(--inv-m); letter-spacing: 1px; white-space: nowrap;
+    }
+    .lb-nav {
+      position: absolute; top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      color: #fff; width: 48px; height: 48px;
+      border-radius: 50%; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s; user-select: none;
+    }
+    .lb-nav:hover { background: rgba(255,255,255,.18); }
+    .lb-prev { left: 32px; }
+    .lb-next { right: 32px; }
+
+    /* ── CTA STRIP ──────────────────────────── */
+    .cta-strip {
+      background: linear-gradient(135deg, #EBF8F6 0%, #EFF0F8 100%);
+      padding: 96px 48px;
+      border-top: 1px solid rgba(46,196,182,.18);
+      border-bottom: 1px solid rgba(46,196,182,.18);
+    }
+    .cta-duo {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .cta-duo-left .eyebrow { margin-bottom: 20px; }
+    .cta-duo-left .eyebrow span { color: var(--teal); }
+    .cta-duo-left h2 {
+      font-size: clamp(28px, 3.2vw, 46px); color: #1A3640; margin-bottom: 16px; line-height: 1.15;
+    }
+    .cta-duo-left h2 em { font-style: italic; color: var(--teal-d); }
+    .cta-duo-left p {
+      font-size: 15px; font-weight: 300; color: #4A6B75; line-height: 1.78;
+    }
+    .cta-wa-card {
+      background: #fff;
+      border: 1px solid rgba(46,196,182,.25);
+      border-radius: 4px; padding: 40px 40px 36px;
+      display: flex; flex-direction: column; gap: 28px;
+      box-shadow: 0 8px 40px rgba(46,196,182,.12);
+    }
+    .cta-wa-card-hdr { display: flex; align-items: center; gap: 16px; }
+    .cta-wa-card-ico {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--green); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cta-wa-card-meta strong { display: block; font-size: 15px; color: #1A3640; font-weight: 500; margin-bottom: 2px; }
+    .cta-wa-card-meta span { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #7A9AA5; }
+    .cta-wa-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 36px; color: #1A3640; letter-spacing: .5px; line-height: 1;
+    }
+    .cta-wa-num small { font-family: 'DM Sans', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #7A9AA5; font-weight: 300; display: block; margin-top: 6px; }
+    .cta-wa-link {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: var(--green); color: #fff;
+      padding: 17px 28px; border-radius: 3px;
+      font-size: 14px; font-weight: 500; letter-spacing: .2px;
+      text-decoration: none; transition: all .25s;
+    }
+    .cta-wa-link:hover { background: #16a34a; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(34,197,94,.35); }
+
+    /* ── CONSULTÓRIO ────────────────────────── */
+    .sec-cons { position: relative; overflow: hidden; padding: 0; }
+    .cons-bg { position: absolute; inset: 0; z-index: 0; }
+    .cons-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
+    .cons-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(11,25,38,.95) 0%, rgba(11,25,38,.88) 45%, rgba(11,25,38,.55) 100%);
+    }
+    .cons-content {
+      position: relative; z-index: 1;
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 5fr 7fr;
+      gap: 64px; align-items: center;
+      padding: 96px 48px;
+    }
+    .cons-info { display: flex; flex-direction: column; justify-content: center; }
+    .cons-info .eyebrow span { color: var(--teal); }
+    .cons-info h2 { font-size: clamp(28px, 3vw, 42px); color: #fff; margin-bottom: 18px; }
+    .cons-info p { font-size: 15px; font-weight: 300; color: var(--inv); line-height: 1.8; margin-bottom: 28px; }
+    .addr-card {
+      background: rgba(255,255,255,.06);
+      border-left: 3px solid var(--teal);
+      padding: 18px 22px; margin-bottom: 24px;
+      font-size: 14px; font-weight: 300;
+      color: var(--inv); line-height: 1.7;
+    }
+    .addr-card strong { font-weight: 500; color: #fff; display: block; margin-bottom: 4px; }
+    .wa-cta {
+      display: flex; align-items: center; gap: 18px;
+      background: var(--green); color: #fff;
+      padding: 20px 28px; text-decoration: none; border-radius: 3px;
+      transition: all .25s;
+    }
+    .wa-cta:hover { background: #16a34a; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(34,197,94,.28); }
+    .wa-circ {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,.18);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .wa-cta-txt strong { display: block; font-size: 16px; font-weight: 600; letter-spacing: .3px; }
+    .wa-cta-txt small { font-size: 11px; opacity: .75; font-weight: 300; letter-spacing: .5px; }
+    .cons-map {
+      height: 500px; border-radius: 3px; overflow: hidden;
+      border: 1px solid rgba(46,196,182,.25);
+      box-shadow: 0 24px 64px rgba(0,0,0,.45);
+    }
+    .cons-map iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+    /* ── FOOTER ─────────────────────────────── */
+    footer {
+      background: #060d16; padding: 44px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 20px; flex-wrap: wrap;
+    }
+    .ft-left strong {
+      font-family: 'DM Serif Display', serif;
+      font-size: 17px; color: rgba(255,255,255,.88); display: block; margin-bottom: 4px;
+    }
+    .ft-left span {
+      font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--teal);
+    }
+    .ft-right {
+      font-size: 12px; font-weight: 300; color: rgba(255,255,255,.3);
+      text-align: right; line-height: 1.8;
+    }
+
+    /* ── FLOAT WA ───────────────────────────── */
+    .float-wa {
+      position: fixed; bottom: 30px; right: 30px; z-index: 300;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: var(--green);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 24px rgba(34,197,94,.45);
+      transition: transform .2s;
+      animation: wapulse 2.8s ease-in-out infinite;
+    }
+    .float-wa:hover { transform: scale(1.1); }
+    @keyframes wapulse {
+      0%, 100% { box-shadow: 0 4px 24px rgba(34,197,94,.45); }
+      50% { box-shadow: 0 4px 24px rgba(34,197,94,.45), 0 0 0 10px rgba(34,197,94,.1); }
+    }
+
+
+    /* ── RESPONSIVE ─────────────────────────── */
+
+    /* — Tablet largo — */
+    @media (max-width: 1100px) {
+      .espec-grid { grid-template-columns: repeat(2, 1fr); }
+      .cta-duo { gap: 48px; }
+      .cons-content { gap: 40px; padding: 80px 40px; }
+      .gal-mosaic { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 240px); }
+      .gal-mosaic .gal-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
+      .gal-mosaic .gal-item:nth-child(3) { grid-column: 2; grid-row: 2; }
+      .gal-mosaic .gal-item:nth-child(4) { grid-column: 1; grid-row: 3; }
+      .gal-mosaic .gal-item:nth-child(5) { grid-column: 2; grid-row: 3; }
+      .gal-mosaic .gal-item:nth-child(6) { grid-column: 1; grid-row: 4; }
+      .gal-mosaic .gal-item:nth-child(7) { grid-column: 2; grid-row: 4; }
+      .gal-mosaic .gal-item:nth-child(8) { display: none; }
+    }
+
+    /* — Tablet / portrait — */
+    @media (max-width: 960px) {
+      /* nav */
+      .nav { padding: 0 24px; }
+      .nav-links { display: none; }
+
+      /* hero */
+      .hero-left { padding: 72px 32px 80px; max-width: 100%; }
+
+      /* data strip: 2×2 */
+      .data-strip-inner { grid-template-columns: repeat(2, 1fr); }
+      .data-item:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,.18); }
+      .data-item:nth-child(odd)  { border-right: 1px solid rgba(255,255,255,.18); }
+      .data-item:nth-child(even) { border-right: none; }
+
+      /* sobre: foto topo + conteúdo embaixo */
+      .sobre-wrap { grid-template-columns: 1fr; gap: 0; }
+      .sobre-photo-col { height: 58vw; max-height: 460px; }
+      .sobre-photo-card { aspect-ratio: auto; height: 100%; border-radius: 0; }
+      .sobre-photo-col::after { display: none; }
+      .sec-sobre { padding: 0 0 80px; }
+      .sobre-content { padding: 52px 40px; }
+
+      /* toxina */
+      .toxina-body { grid-template-columns: 1fr; gap: 40px; }
+
+      /* trajetória */
+      .traj-cols { grid-template-columns: 1fr; }
+
+      /* cta duo: empilha */
+      .cta-duo { grid-template-columns: 1fr; gap: 40px; }
+      .cta-strip { padding: 80px 40px; }
+
+      /* consultório */
+      .cons-content { grid-template-columns: 1fr; gap: 36px; padding: 72px 40px; }
+      .cons-map { height: 380px; }
+
+      /* footer */
+      footer { flex-direction: column; text-align: center; padding: 36px 24px; }
+      .ft-right { text-align: center; }
+    }
+
+    /* — Mobile — */
+    @media (max-width: 640px) {
+      /* global */
+      .sec { padding: 60px 20px; }
+      .sec-hdr { margin-bottom: 40px; }
+      .sec-sobre { padding: 0 0 60px; }
+      .gal-hdr { padding: 56px 20px 32px; }
+      .cta-strip { padding: 64px 20px; }
+
+      /* nav */
+      .nav { padding: 0 16px; height: 60px; }
+      .nav-logo strong { font-size: 15px; }
+      .nav-btn { padding: 9px 14px; font-size: 12px; gap: 6px; }
+
+      /* hero */
+      .hero { padding-top: 60px; align-items: flex-end; min-height: 100svh; }
+      .hero-left { padding: 0 20px 52px; width: 100%; }
+      .hero h1 { font-size: clamp(28px, 8vw, 40px); }
+      .hero-sub { font-size: 14px; max-width: 100%; margin-bottom: 32px; }
+      .cta-row { flex-direction: column; }
+      .btn-wa, .btn-ghost { width: 100%; justify-content: center; }
+      .hero-meta { margin-top: 28px; padding-top: 18px; }
+      .hero-bg::after {
+        background:
+          linear-gradient(to bottom,
+            rgba(11,25,38,.08) 0%,
+            rgba(11,25,38,.30) 35%,
+            rgba(11,25,38,.90) 58%,
+            rgba(11,25,38,.99) 100%
+          );
+      }
+
+      /* data strip: 1 coluna */
+      .data-strip-inner { grid-template-columns: 1fr; }
+      .data-item { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.18) !important; padding: 20px 24px; }
+      .data-item:last-child { border-bottom: none !important; }
+
+      /* especialidades */
+      .espec-grid { grid-template-columns: 1fr; }
+      .espec-card { padding: 28px 20px; }
+
+      /* sobre */
+      .sobre-photo-col { height: 80vw; max-height: 340px; }
+      .sobre-photo { object-position: 50% 28%; }
+      .sobre-content { padding: 36px 20px 52px; }
+      .sobre-content .sec-title { font-size: 28px; }
+
+      /* toxina */
+      .tox-ind { grid-template-columns: 32px 1fr; }
+      .tox-n { font-size: 18px; }
+      .tox-info-card { padding: 16px 18px; }
+
+      /* trajetória */
+      .traj-item { grid-template-columns: 80px 1fr; }
+      .traj-yr { font-size: 10px; padding-right: 12px; }
+      .traj-body { padding-left: 12px; }
+      .traj-body h4 { font-size: 15px; }
+
+      /* galeria */
+      .gal-mosaic { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .gal-mosaic .gal-item { aspect-ratio: 4/3; }
+      .gal-mosaic .gal-item:nth-child(n) { grid-column: auto; grid-row: auto; }
+
+      /* cta */
+      .cta-duo { gap: 28px; }
+      .cta-duo-left h2 { font-size: clamp(24px, 7vw, 34px); }
+      .cta-wa-card { padding: 28px 24px; gap: 20px; }
+      .cta-wa-num { font-size: 26px; }
+      .cta-wa-link { padding: 15px 20px; font-size: 13px; }
+
+      /* consultório */
+      .cons-content { padding: 52px 20px 56px; gap: 28px; }
+      .cons-map { height: 260px; }
+      .addr-card { padding: 14px 16px; font-size: 13px; }
+      .wa-cta { padding: 16px 20px; }
+      .wa-cta-txt strong { font-size: 14px; }
+
+      /* footer */
+      footer { padding: 32px 20px; }
+    }
+
+    /* — Telas muito pequenas (< 380px) — */
+    @media (max-width: 380px) {
+      .hero h1 { font-size: 26px; }
+      .nav-logo strong { font-size: 14px; }
+      .nav-btn svg + * { display: none; } /* mantém ícone, esconde texto */
+      .nav-btn { padding: 9px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">
+    <img src="logo.jpeg" alt="Dra. Rose Marinho" class="nav-logo-img">
+    <div class="nav-logo-text">
+      <strong>Dra. Rose Marinho</strong>
+      <span>Neurologista</span>
+    </div>
+  </div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#especialidades">Especialidades</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#toxina">Toxina Botulínica</a></li>
+      <li><a href="#consultorio">Consultório</a></li>
+    </ul>
+    <a href="https://wa.me/5585997522545?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20Rose%20Marinho." class="nav-btn" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Agendar Consulta
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img id="heroPhoto"
+      src="hero.jpeg"
+      alt="Dra. Rose Marinho, Neurologista em Fortaleza">
+  </div>
+  <div class="hero-left">
+    <div class="eyebrow reveal">
+      <div class="eyebrow-line"></div>
+      <span>Neurologia de Referência em Fortaleza</span>
+    </div>
+    <h1 class="reveal reveal-delay-1">Cuidado neurológico com <em>precisão</em> e humanidade</h1>
+    <p class="hero-sub reveal reveal-delay-2">Especialista em Doença de Parkinson, Tremores, Transtornos do Movimento, Demências e Toxina Botulínica Terapêutica. Mais de 35 anos dedicados à neurologia.</p>
+    <div class="cta-row reveal reveal-delay-3">
+      <a href="https://wa.me/5585997522545?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20Rose%20Marinho." class="btn-wa" target="_blank" rel="noopener">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Agendar pelo WhatsApp
+      </a>
+      <a href="#sobre" class="btn-ghost">Conheça a Dra. Rose</a>
+    </div>
+    <p class="hero-meta reveal reveal-delay-4">CRM-CE 5027 &nbsp;&middot;&nbsp; RQE 12171</p>
+  </div>
+</section>
+
+<!-- DATA STRIP -->
+<div class="data-strip">
+  <div class="data-strip-inner">
+    <div class="data-item reveal">
+      <div class="data-n" data-target="35" data-suffix="+">0</div>
+      <div class="data-l">Anos de experiência em neurologia</div>
+    </div>
+    <div class="data-item reveal reveal-delay-1">
+      <div class="data-n">MDS</div>
+      <div class="data-l">Membro desde 2008</div>
+    </div>
+    <div class="data-item reveal reveal-delay-2">
+      <div class="data-n">ABN</div>
+      <div class="data-l">Academia Brasileira de Neurologia</div>
+    </div>
+    <div class="data-item reveal reveal-delay-3">
+      <div class="data-n">HGF</div>
+      <div class="data-l">Pioneira — Toxina Botulínica</div>
+    </div>
+  </div>
+</div>
+
+<!-- ESPECIALIDADES -->
+<section class="sec sec-espec" id="especialidades">
+  <div class="sec-inner">
+    <div class="sec-hdr reveal">
+      <div class="eyebrow"><div class="eyebrow-line"></div><span>Áreas de Atuação</span></div>
+      <h2 class="sec-title">Especialidades e Serviços</h2>
+      <p class="sec-desc">Atendimento especializado para um amplo espectro de condições neurológicas, com diagnóstico preciso e tratamento individualizado.</p>
+    </div>
+    <div class="espec-grid">
+
+      <div class="espec-card reveal">
+        <span class="espec-n">01</span>
+        <div class="espec-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2C7 2 5 4.5 5 7a5 5 0 0 0 1.8 3.8A4 4 0 0 0 5 14a4 4 0 0 0 4 4h.5V21a1 1 0 0 0 2 0v-3H12a4 4 0 0 0 4-4 4 4 0 0 0-1.8-3.3A5 5 0 0 0 16 7c0-2.5-2-5-4.5-5-.7 0-1.4.2-2 .5A4 4 0 0 0 9.5 2z"/></svg></div>
+        <h3>Doença de Parkinson</h3>
+        <p>Diagnóstico precoce, ajuste de medicação e acompanhamento longitudinal com expertise reconhecida.</p>
+      </div>
+
+      <div class="espec-card reveal reveal-delay-1">
+        <span class="espec-n">02</span>
+        <div class="espec-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><polyline points="2,12 5,7 8,12 11,17 14,12 17,7 20,12 22,9"/></svg></div>
+        <h3>Tremores e Distúrbios do Movimento</h3>
+        <p>Tremor essencial, movimentos involuntários e outras alterações motoras complexas.</p>
+      </div>
+
+      <div class="espec-card reveal reveal-delay-2">
+        <span class="espec-n">03</span>
+        <div class="espec-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M8 12c-3 1-5 3.5-5 6h18c0-2.5-2-5-5-6"/><line x1="12" y1="12" x2="12" y2="22"/></svg></div>
+        <h3>Espasmo Hemifacial</h3>
+        <p>Tratamento especializado com toxina botulínica para contrações involuntárias faciais.</p>
+      </div>
+
+      <div class="espec-card reveal reveal-delay-3">
+        <span class="espec-n">04</span>
+        <div class="espec-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>Distonia e Espasticidade</h3>
+        <p>Distonia cervical, cãibra do escrivão e espasticidade pós-AVC, EM e traumatismos.</p>
+      </div>
+
+      <div class="espec-card reveal">
+        <span class="espec-n">05</span>
+        <div class="espec-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 5 5 5 8.5c0 2 .7 3.8 2 5C6 15 5.5 17 5.5 18.5A3.5 3.5 0 0 0 9 22h6a3.5 3.5 0 0 0 3.5-3.5c0-1.5-.5-3.5-1.5-5a7 7 0 0 0 2-5C19 5 16 2 12 2z"/></svg></div>
+        <h3>Memória e Demências</h3>
+        <p>Avaliação cognitiva, Alzheimer, demência por corpos de Lewy e outras síndromes demenciais.</p>
+      </div>
+
+      <div class="espec-card reveal reveal-delay-1">
+        <span class="espec-n">06</span>
+        <div class="espec-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C9.5 2 8 4 8 6a4 4 0 0 0 2 3.5L9 22h6l-1-12.5A4 4 0 0 0 16 6c0-2-1.5-4-4-4z"/><path d="M7 10c-2 1-3 3-3 5M17 10c2 1 3 3 3 5"/></svg></div>
+        <h3>Hiperidrose e Sialorreia</h3>
+        <p>Toxina botulínica para tratamento de sudorese excessiva e salivação excessiva.</p>
+      </div>
+
+      <div class="espec-card reveal reveal-delay-2">
+        <span class="espec-n">07</span>
+        <div class="espec-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <h3>Enxaqueca Crônica</h3>
+        <p>Tratamento preventivo com toxina botulínica para enxaqueca refratária a outros medicamentos.</p>
+      </div>
+
+      <div class="espec-card reveal reveal-delay-3">
+        <span class="espec-n">08</span>
+        <div class="espec-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></div>
+        <h3>Consulta Neurológica</h3>
+        <p>Avaliação clínica completa com anamnese detalhada e exame físico especializado.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sec-sobre" id="sobre">
+  <div class="sobre-wrap">
+    <div class="sobre-photo-col">
+      <div class="sobre-photo-card">
+        <img class="sobre-photo"
+          src="sobre.jpeg"
+          alt="Dra. Rose Marinho">
+      </div>
+    </div>
+    <div class="sobre-content">
+      <div class="eyebrow reveal"><div class="eyebrow-line"></div><span>Sobre a Dra. Rose</span></div>
+      <h2 class="sec-title reveal">Uma trajetória de dedicação à neurologia</h2>
+      <p class="reveal">Graduada em Medicina pela <strong>Universidade Federal do Ceará</strong> em 1989, a Dra. Rose Marinho construiu uma das trajetórias mais sólidas da neurologia cearense ao longo de mais de três décadas.</p>
+      <p class="reveal">Após residência em Neurologia no <strong>Hospital Universitário Walter Cantídio</strong>, realizou estágio no <strong>Hospital Queen Square, em Londres</strong>, referência mundial em neurologia. Foi Presidente da <strong>Sociedade Cearense de Neurologia e Neurocirurgia</strong> de 2014 a 2015 e pioneira no ambulatório de Toxina Botulínica Terapêutica no HGF.</p>
+      <div class="creds reveal">
+        <div class="cred"><div class="cred-bar"></div><span>Membro Efetivo da Academia Brasileira de Neurologia</span></div>
+        <div class="cred"><div class="cred-bar"></div><span>Membro da Movement Disorders Society desde 2008</span></div>
+        <div class="cred"><div class="cred-bar"></div><span>Ex-Presidente da Sociedade Cearense de Neurologia e Neurocirurgia</span></div>
+        <div class="cred"><div class="cred-bar"></div><span>Estágio no Hospital Queen Square, Londres</span></div>
+        <div class="cred"><div class="cred-bar"></div><span>Pioneira no ambulatório de Toxina Botulínica no HGF</span></div>
+      </div>
+      <div class="reveal">
+        <a href="https://wa.me/5585997522545?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20Rose%20Marinho." class="btn-wa" style="width:fit-content;" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Agendar Consulta
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOXINA BOTULÍNICA -->
+<section class="sec sec-toxina" id="toxina">
+  <div class="sec-inner">
+    <div class="sec-hdr reveal">
+      <div class="eyebrow"><div class="eyebrow-line"></div><span>Tratamento Especializado</span></div>
+      <h2 class="sec-title">Toxina Botulínica Terapêutica</h2>
+      <p class="sec-desc">Pioneira no uso terapêutico da toxina botulínica no Ceará, com vasta experiência clínica e em reabilitação neurológica. Aplica em consultório.</p>
+    </div>
+    <div class="toxina-body">
+
+      <div class="toxina-left reveal">
+        <p>A Dra. Rose Marinho criou o ambulatório de Bloqueio Neuromuscular com Toxina Botulínica no <strong>Hospital Geral de Fortaleza</strong>, sendo referência no estado para essa modalidade de tratamento.</p>
+        <div class="tox-info-card">
+          <div class="lbl">O que é a Toxina Botulínica</div>
+          <p>Aplicada por injeção com agulhas finas, bloqueia temporariamente sinais nervosos que causam contrações musculares involuntárias ou hiperatividade de glândulas. A marca mais conhecida é o Botox.</p>
+        </div>
+        <div class="tox-info-card">
+          <div class="lbl">Aplicação em Consultório</div>
+          <p>Procedimento ambulatorial, efeito em poucos dias com duração média de 3 a 6 meses. Realizado com expertise de quem pioneirizou a técnica no Ceará.</p>
+        </div>
+        <div class="tox-info-card">
+          <div class="lbl">Reabilitação Neurológica</div>
+          <p>Além do uso clínico, a Dra. Rose possui ampla experiência no uso da toxina botulínica como ferramenta de reabilitação em pacientes neurológicos.</p>
+        </div>
+      </div>
+
+      <div class="toxina-right reveal">
+        <div class="tox-list-hdr">Condições tratadas</div>
+        <div class="tox-ind"><span class="tox-n">1</span><div><div class="tox-name">Espasmo Hemifacial</div><div class="tox-sub">Contrações involuntárias dos músculos de um lado do rosto</div></div></div>
+        <div class="tox-ind"><span class="tox-n">2</span><div><div class="tox-name">Distonia Cervical</div><div class="tox-sub">Contrações musculares involuntárias no pescoço</div></div></div>
+        <div class="tox-ind"><span class="tox-n">3</span><div><div class="tox-name">Cãibra do Escrivão</div><div class="tox-sub">Distonia focal que afeta movimentos finos das mãos</div></div></div>
+        <div class="tox-ind"><span class="tox-n">4</span><div><div class="tox-name">Hiperidrose</div><div class="tox-sub">Sudorese excessiva</div></div></div>
+        <div class="tox-ind"><span class="tox-n">5</span><div><div class="tox-name">Sialorreia</div><div class="tox-sub">Salivação excessiva</div></div></div>
+        <div class="tox-ind"><span class="tox-n">6</span><div><div class="tox-name">Enxaqueca Crônica</div><div class="tox-sub">Tratamento preventivo em pacientes selecionados</div></div></div>
+        <div class="tox-ind"><span class="tox-n">7</span><div><div class="tox-name">Espasticidade</div><div class="tox-sub">Pós-AVC, Esclerose Múltipla, trauma craniano e raquimedular</div></div></div>
+        <div class="tox-cta">
+          <a href="https://wa.me/5585997522545?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20tratamento%20com%20Toxina%20Botul%C3%ADnica." class="btn-wa" target="_blank" rel="noopener" style="justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Tirar Dúvidas pelo WhatsApp
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TRAJETÓRIA -->
+<section class="sec sec-traj">
+  <div class="sec-inner">
+    <div class="sec-hdr reveal">
+      <div class="eyebrow"><div class="eyebrow-line"></div><span>Formação e Carreira</span></div>
+      <h2 class="sec-title">Uma trajetória de excelência</h2>
+      <p class="sec-desc">Décadas de formação, pesquisa e atuação clínica fundamentam um atendimento baseado nas melhores práticas da neurologia mundial.</p>
+    </div>
+    <div class="traj-cols">
+      <div>
+        <div class="traj-item reveal"><div class="traj-yr">1989</div><div class="traj-body"><h4>Graduação em Medicina</h4><p>Universidade Federal do Ceará (UFC)</p></div></div>
+        <div class="traj-item reveal"><div class="traj-yr">1990&thinsp;–&thinsp;1992</div><div class="traj-body"><h4>Residência em Medicina Interna</h4><p>Hospital Geral de Fortaleza (HGF)</p></div></div>
+        <div class="traj-item reveal"><div class="traj-yr">1992</div><div class="traj-body"><h4>Concurso Público</h4><p>Aprovada nas Secretarias de Saúde Estadual e Municipal do Ceará, lotada no HGF</p></div></div>
+        <div class="traj-item reveal"><div class="traj-yr">1995&thinsp;–&thinsp;1997</div><div class="traj-body"><h4>Residência em Neurologia</h4><p>Hospital Universitário Walter Cantídio, UFC</p></div></div>
+        <div class="traj-item reveal"><div class="traj-yr">1997</div><div class="traj-body"><h4>Estágio na UNICAMP</h4><p>Hospital Universitário da Universidade Estadual de Campinas</p></div></div>
+      </div>
+      <div>
+        <div class="traj-item reveal"><div class="traj-yr">2008</div><div class="traj-body"><h4>Movement Disorders Society</h4><p>Filiação à principal sociedade mundial de distúrbios do movimento, com participação em congressos anuais</p></div></div>
+        <div class="traj-item reveal"><div class="traj-yr">2013</div><div class="traj-body"><h4>Estágio em Londres</h4><p>Hospital Queen Square, referência mundial em neurologia</p></div></div>
+        <div class="traj-item reveal"><div class="traj-yr">2014&thinsp;–&thinsp;2015</div><div class="traj-body"><h4>Presidência da SCNN</h4><p>Sociedade Cearense de Neurologia e Neurocirurgia</p></div></div>
+        <div class="traj-item reveal"><div class="traj-yr">Até 2025</div><div class="traj-body"><h4>HGF — Neurologia Cognitiva</h4><p>Aposentou-se do serviço público em 2025 para dedicação integral ao consultório particular</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section class="sec-gal">
+  <div class="gal-hdr reveal">
+    <div class="eyebrow"><div class="eyebrow-line"></div><span>Presença Internacional</span></div>
+    <h2 class="sec-title">Atualização Científica Contínua</h2>
+    <p class="sec-desc">Participação ativa nos principais congressos de neurologia do mundo.</p>
+  </div>
+  <div class="gal-mosaic">
+    <div class="gal-item" data-src="gal-01.jpeg" data-cap="Congresso MDS — Filadélfia, 2024">
+      <img src="gal-01.jpeg" alt="Congresso MDS Filadélfia 2024" loading="lazy">
+      <div class="gal-cap"><div class="gal-cap-label">Movement Disorders Society</div><p>Congresso MDS — Filadélfia, 2024</p></div>
+      <div class="gal-zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+    </div>
+    <div class="gal-item" data-src="gal-02.jpeg" data-cap="Congresso MDS — Nice, França">
+      <img src="gal-02.jpeg" alt="Congresso MDS Nice" loading="lazy">
+      <div class="gal-cap"><div class="gal-cap-label">Movement Disorders Society</div><p>Congresso MDS — Nice, França</p></div>
+      <div class="gal-zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+    </div>
+    <div class="gal-item" data-src="gal-03.jpeg" data-cap="Congresso MDS — Nice, França">
+      <img src="gal-03.jpeg" alt="Congresso MDS Nice" loading="lazy">
+      <div class="gal-cap"><div class="gal-cap-label">Movement Disorders Society</div><p>Congresso MDS — Nice, França</p></div>
+      <div class="gal-zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+    </div>
+    <div class="gal-item" data-src="gal-04.jpeg" data-cap="Pôster científico — MDS Filadélfia, 2024">
+      <img src="gal-04.jpeg" alt="Pôster MDS 2024" loading="lazy">
+      <div class="gal-cap"><div class="gal-cap-label">Pesquisa Científica</div><p>Pôster apresentado no Congresso MDS — Filadélfia, 2024</p></div>
+      <div class="gal-zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+    </div>
+    <div class="gal-item" data-src="gal-05.jpeg" data-cap="Congresso Brain — Fortaleza, 2025">
+      <img src="gal-05.jpeg" alt="Congresso Brain Fortaleza 2025" loading="lazy">
+      <div class="gal-cap"><div class="gal-cap-label">Neurologia Nacional</div><p>Congresso Brain — Fortaleza, 2025</p></div>
+      <div class="gal-zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+    </div>
+    <div class="gal-item" data-src="gal-06.jpeg" data-cap="Homenagem pelos serviços ao HGF — 2026">
+      <img src="gal-06.jpeg" alt="Homenagem HGF" loading="lazy">
+      <div class="gal-cap"><div class="gal-cap-label">Reconhecimento</div><p>Homenagem pelos serviços prestados ao HGF — maio de 2026</p></div>
+      <div class="gal-zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+    </div>
+    <div class="gal-item" data-src="gal-07.jpeg" data-cap="Aula sobre Doença de Parkinson — SCNN">
+      <img src="gal-07.jpeg" alt="Aula Parkinson SCNN" loading="lazy">
+      <div class="gal-cap"><div class="gal-cap-label">Ensino e Pesquisa</div><p>Apresentação sobre Parkinson — SCNN</p></div>
+      <div class="gal-zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+    </div>
+    <div class="gal-item" data-src="gal-08.jpeg" data-cap="Com os residentes do ambulatório de Transtornos do Movimento — HGF">
+      <img src="gal-08.jpeg" alt="Residentes HGF" loading="lazy">
+      <div class="gal-cap"><div class="gal-cap-label">Formação Médica</div><p>Com os residentes — Ambulatório de Transtornos do Movimento, HGF</p></div>
+      <div class="gal-zoom"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section class="cta-strip">
+  <div class="cta-duo reveal">
+    <div class="cta-duo-left">
+      <div class="eyebrow"><div class="eyebrow-line"></div><span>Agende sua Consulta</span></div>
+      <h2>Está em busca de um cuidado neurológico de <em>excelência?</em></h2>
+      <p>Agende sua consulta com a Dra. Rose Marinho e receba um atendimento especializado, humano e fundamentado nas evidências mais recentes da neurologia mundial.</p>
+    </div>
+    <div class="cta-duo-right">
+      <div class="cta-wa-card">
+        <div class="cta-wa-card-hdr">
+          <div class="cta-wa-card-ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <div class="cta-wa-card-meta">
+            <strong>Dra. Rose Marinho</strong>
+            <span>Neurologista &middot; Fortaleza</span>
+          </div>
+        </div>
+        <div class="cta-wa-num">
+          (85) 99752-2545
+          <small>WhatsApp &middot; Seg&ndash;Sex</small>
+        </div>
+        <a href="https://wa.me/5585997522545?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20Rose%20Marinho." class="cta-wa-link" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Iniciar conversa pelo WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTÓRIO -->
+<section class="sec-cons" id="consultorio">
+  <div class="cons-bg">
+    <img src="consultorio-bg.avif" alt="" loading="lazy">
+  </div>
+  <div class="cons-content">
+    <div class="cons-info">
+      <div class="eyebrow reveal"><div class="eyebrow-line"></div><span>Onde nos Encontrar</span></div>
+      <h2 class="reveal">O Consultório</h2>
+      <p class="reveal">Ambiente acolhedor e moderno, localizado em uma das principais avenidas de Fortaleza, com estrutura completa para consultas neurológicas e aplicação de toxina botulínica.</p>
+      <div class="addr-card reveal">
+        <strong>Endereço</strong><br>
+        Avenida Dom Luís, 1233, Sala 1804<br>
+        Edifício Harmony Medical Center<br>
+        Fortaleza, CE
+      </div>
+      <a href="https://wa.me/5585997522545?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20Rose%20Marinho." class="wa-cta reveal" target="_blank" rel="noopener">
+        <div class="wa-circ">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </div>
+        <div class="wa-cta-txt">
+          <strong>(85) 99752-2545</strong>
+          <small>Agendar pelo WhatsApp</small>
+        </div>
+      </a>
+    </div>
+    <div class="cons-map reveal">
+      <iframe
+        src="https://maps.google.com/maps?q=Harmony+Medical+Center,+Av.+Dom+Lu%C3%ADs,+1233,+Meireles,+Fortaleza,+CE&output=embed&hl=pt-BR&z=16"
+        allowfullscreen loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-left">
+    <strong>Dra. Rose Marinho</strong>
+    <span>Neurologista &middot; CRM-CE 5027 &middot; RQE 12171</span>
+  </div>
+  <div class="ft-right">
+    Av. Dom Luís, 1233, Sala 1804 &middot; Edifício Harmony Medical Center &middot; Fortaleza, CE<br>
+    (85) 99752-2545<br>
+  </div>
+</footer>
+
+<!-- FLOAT WA -->
+<a href="https://wa.me/5585997522545?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20Dra.%20Rose%20Marinho." class="float-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <div class="lb-close" id="lbClose">Fechar &times;</div>
+  <div class="lb-nav lb-prev" id="lbPrev">&#8592;</div>
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <div class="lb-nav lb-next" id="lbNext">&#8594;</div>
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<script>
+  // ── Scroll reveal ──────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Nav scroll ─────────────────────────────
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ── Hero photo zoom-out on load ────────────
+  const heroPhoto = document.getElementById('heroPhoto');
+  if (heroPhoto.complete) heroPhoto.classList.add('loaded');
+  else heroPhoto.addEventListener('load', () => heroPhoto.classList.add('loaded'));
+
+  // ── Counter animation ──────────────────────
+  const counters = document.querySelectorAll('.data-n[data-target]');
+  const cObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = +el.dataset.target;
+      const suffix = el.dataset.suffix || '';
+      const duration = 1400;
+      const start = performance.now();
+      const startVal = target > 100 ? target - 200 : 0;
+      const update = (now) => {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(startVal + (target - startVal) * eased) + suffix;
+        if (p < 1) requestAnimationFrame(update);
+      };
+      requestAnimationFrame(update);
+      cObs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => cObs.observe(c));
+
+  // ── Gallery lightbox ───────────────────────
+  const items = document.querySelectorAll('.gal-item');
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lbImg');
+  const lbCap = document.getElementById('lbCap');
+  let currentIndex = 0;
+  const photos = Array.from(items).map(i => ({ src: i.dataset.src, cap: i.dataset.cap }));
+
+  function openLb(index) {
+    currentIndex = index;
+    lbImg.src = photos[index].src;
+    lbCap.textContent = photos[index].cap;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+  function navLb(dir) {
+    currentIndex = (currentIndex + dir + photos.length) % photos.length;
+    lbImg.style.opacity = '0';
+    setTimeout(() => {
+      lbImg.src = photos[currentIndex].src;
+      lbCap.textContent = photos[currentIndex].cap;
+      lbImg.style.opacity = '1';
+    }, 180);
+  }
+
+  items.forEach((item, i) => item.addEventListener('click', () => openLb(i)));
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  document.getElementById('lbPrev').addEventListener('click', () => navLb(-1));
+  document.getElementById('lbNext').addEventListener('click', () => navLb(1));
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') navLb(-1);
+    if (e.key === 'ArrowRight') navLb(1);
+  });
+  lbImg.style.transition = 'opacity .18s';
+</script>
+
+</body>
+</html>
